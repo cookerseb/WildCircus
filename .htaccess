@@ -1,0 +1,44 @@
+RewriteEngine on 
+
+IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+
+<Limit GET POST>
+order deny,allow
+deny from all
+allow from all
+</Limit>
+<Limit PUT DELETE>
+order deny,allow
+deny from all
+</Limit>
+
+# PERSONAL ERROR PAGES
+ErrorDocument 400 /erreur.php?erreur=400
+ErrorDocument 401 /erreur.php?erreur=401
+ErrorDocument 402 /erreur.php?erreur=402
+ErrorDocument 403 /erreur.php?erreur=403
+ErrorDocument 404 /erreur.php?erreur=404
+ErrorDocument 405 /erreur.php?erreur=405
+ErrorDocument 500 /erreur.php?erreur=500
+ErrorDocument 501 /erreur.php?erreur=501
+ErrorDocument 502 /erreur.php?erreur=502
+ErrorDocument 503 /erreur.php?erreur=503
+ErrorDocument 504 /erreur.php?erreur=504
+ErrorDocument 505 /erreur.php?erreur=505
+
+
+# REAL PAGES
+RewriteRule ^$ ./index.php [L]
+RewriteRule ^index.html$ ./index.php [L]
+RewriteRule ^nextshow.html$ ./nextshow.php [L]
+RewriteRule ^booking.html$ ./booking.php [L]
+RewriteRule ^contact.html$ ./contact.php [L]
+RewriteRule ^visit.html$ ./visit.php [L]
+RewriteRule ^artists.html$ ./artists.php [L]
+RewriteRule ^animals.html$ ./animals.php [L]
+RewriteRule ^history.html$ ./history.php [L]
+RewriteRule ^legacy.html$ ./legacy.php [L]
+
+# DYNAMIcs PAGES
+RewriteRule ^show-([_a-zA-Z0-9-]+)\.html$ show.php?item=$1 [L]
+
